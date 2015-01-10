@@ -53,6 +53,7 @@ To use, create a new Calender instance and generate it, below you'll find severa
 		$cal->setNextClass('btn'); // Set next btn class name
 		$cal->setPrevClass('btn'); // Set Prev btn class name
 		$cal->setEvents($events); // Receives the events array
+		$cal->setStartWeek('Mon'); // Add this option for get first day of week Monday
 		/**** END OPTIONAL METHODS ****/
 
 		echo $cal->generate() // Return the calendar's html;
