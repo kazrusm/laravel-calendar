@@ -35,6 +35,8 @@ class Calendar {
 	private $dateWrap = array('<div class="date">', '</div>');
 	private $labelsClass = 'cal_labels';
 	private $eventWrap = array('<p>', '</p>');
+	
+	private $startWeek = 'Sun';
 
 	private $today;
 
@@ -177,6 +179,11 @@ class Calendar {
 		return $this;
 	}
 
+	public function setStartWeek($class) {
+		$this->startWeek = $class;
+		return $this;
+	}	
+
 	private function buildHeader() {
 		$month_name = $this->month_lbls[$this->month - 1] . ' ' . $this->year;
 		$vclass = strtolower($this->view);
@@ -270,7 +277,11 @@ class Calendar {
 		$day = 1;
 		$now_date = $this->year . '-' . $this->month . '-01';
 		$startingDay = date('N', strtotime('first day of this month', strtotime($now_date)));
-
+		
+		if ($this->startWeek == "Mon") {
+			$startingDay = $startingDay - 1;
+		}
+		
 		$monthLength = $this->days_month[$this->month - 1];
 		$h = "<tr>";
 		for ($i = $startingDay == 7 ? 1 : 0; $i < 9; $i++) {
